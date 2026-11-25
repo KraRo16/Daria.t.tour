@@ -36,28 +36,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check project configuration
-        run: |
-          echo "COMMIT:"
-          git rev-parse HEAD
-
-          echo "DIRECTORY:"
-          pwd
-
-          echo "FILES:"
-          ls -la
-
-          echo "VITE CONFIG:"
-          cat vite.config.ts
-
-          echo "PACKAGE:"
-          cat package.json
-
-          echo "DEPENDENCY TREE:"
-          npm ls @react-router/dev react-router vite
-
       - name: Build React project
-        run: npm run build
+        env:
+          DEBUG: "*"
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
