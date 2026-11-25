@@ -38,10 +38,16 @@ jobs:
 
       - name: Check project configuration
         run: |
+          echo "CURRENT DIRECTORY:"
           pwd
+          echo "ROOT FILES:"
           ls -la
+          echo "VITE CONFIG:"
           cat vite.config.ts
+          echo "PACKAGE:"
           cat package.json
+          echo "INSTALLED VERSIONS:"
+          npm ls @react-router/dev react-router vite
 
       - name: Build React project
         run: npm run build
