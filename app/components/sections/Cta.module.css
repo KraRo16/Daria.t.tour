@@ -1,0 +1,43 @@
+.cta {
+    /* локально переопределяем цвета, чтобы кнопка .btn выглядела правильно на жёлтом фоне */
+    --ink: #2b2118;
+    --bg: #fff3d6;
+    background: linear-gradient(135deg, #ffd24d, #f4b315 55%, #e68a0a);
+    color: #2b2118;
+    text-align: center;
+    padding: 11vh 5vw;
+}
+
+.cta :global(.eyebrow) {
+    color: #5a3a14;
+}
+
+.title {
+    font-size: clamp(44px, 7.5vw, 110px);
+    margin-bottom: 28px;
+}
+
+.title em {
+    font-style: italic;
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    font-size: 15px;
+}
+
+.contacts small {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.contacts a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,49 @@
+.section {
+    padding: 9vh 5vw;
+}
+
+.wrap {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: clamp(34px, 4.6vw, 68px);
+    margin-bottom: 32px;
+}
+
+.item {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+}
+
+.item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-family: var(--font-serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.2;
+}
+
+.item summary::-webkit-details-marker {
+    display: none;
+}
+
+.item summary::after {
+    content: "+";
+    color: var(--ac2);
+    transition: transform 0.3s;
+}
+
+.item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.item p {
+    color: var(--mut);
+    margin-top: 10px;
+    max-width: 640px;
+}

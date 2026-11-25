@@ -1,0 +1,25 @@
+:root {
+    --bg: #fffaf0;
+    --bg2: #fff0c2;
+    --card: #fff;
+    --ink: #2b2118;
+    --mut: #7a6a58;
+    --ac: #f4b315;
+    --ac2: #d97706;
+    --br: #5a3a14;
+    --line: rgba(43, 33, 24, 0.15);
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter Variable", system-ui, sans-serif;
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1c1610;
+        --bg2: #2a2013;
+        --card: #2a2118;
+        --ink: #fff3d6;
+        --mut: #c2b192;
+        --line: rgba(255, 243, 214, 0.15);
+    }
+}

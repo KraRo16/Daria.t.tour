@@ -1,0 +1,122 @@
+.svg {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    display: block;
+}
+
+.nb {
+    fill: var(--bg2);
+    stroke: var(--line);
+    stroke-width: 0.8;
+    opacity: 0.8;
+}
+
+.region {
+    fill: var(--card);
+    stroke: var(--br);
+    stroke-width: 1.4;
+}
+
+.lines {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 0.7;
+}
+
+.prv {
+    fill: rgba(244, 179, 21, 0.2);
+    stroke: var(--ac2);
+    stroke-width: 1.2;
+    cursor: pointer;
+    transition: fill 0.3s;
+    outline: none;
+}
+
+.prv:hover,
+.prv:focus-visible,
+.prv.hot {
+    fill: rgba(244, 179, 21, 0.6);
+}
+
+.route {
+    fill: none;
+    stroke: var(--ac2);
+    stroke-width: 2;
+    stroke-dasharray: 3 7;
+    animation: dash 2s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+.tw {
+    fill: var(--mut);
+}
+
+.tl {
+    font: 400 11px var(--font-sans);
+    fill: var(--mut);
+    pointer-events: none;
+}
+
+.pt {
+    cursor: pointer;
+}
+
+.dot {
+    fill: var(--ac2);
+    stroke: #fff;
+    stroke-width: 3;
+    transition: r 0.3s;
+}
+
+.ring {
+    fill: none;
+    stroke: var(--ac2);
+    stroke-width: 2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse 2.2s ease-out infinite;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.6);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+.pt text {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    fill: var(--ink);
+    transition: fill 0.3s;
+}
+
+.pt:hover .dot,
+.hot .dot {
+    r: 13;
+}
+
+.pt:hover text,
+.hot text {
+    fill: var(--ac2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .route,
+    .ring {
+        animation: none;
+    }
+}

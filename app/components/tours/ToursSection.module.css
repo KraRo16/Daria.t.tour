@@ -1,0 +1,3 @@
+.section {
+    padding: 9vh max(5vw, calc((100vw - 1280px) / 2));
+}
