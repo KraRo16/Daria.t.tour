@@ -37,9 +37,23 @@ jobs:
         run: npm ci
 
       - name: Build React project
+        env:
+          BASE_PATH: /Daria.t.tour/
         run: |
           set -o pipefail
           npm run build 2>&1 | tee build.log
+
+      - name: Fix prerender output location
+        run: |
+          # обход ошибки React Router: страницы лежат во вложенной папке basename
+          if [ -d "build/client/Daria.t.tour" ]; then
+            cp -r build/client/Daria.t.tour/. build/client/
+            rm -rf build/client/Daria.t.tour
+          fi
+          # на всякий случай: чтобы корень сайта всегда открывался
+          if [ ! -f build/client/index.html ] && [ -f build/client/__spa-fallback.html ]; then
+            cp build/client/__spa-fallback.html build/client/index.html
+          fi
 
       - name: Inspect generated files
         if: always()

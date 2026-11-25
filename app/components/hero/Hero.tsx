@@ -4,9 +4,11 @@ import s from "./Hero.module.css";
 
 const FADE = 1.2; // длительность перехода, секунды
 
+const BASE = import.meta.env.BASE_URL; // "/" локально, "/Daria.t.tour/" на GitHub Pages
+
 const SLIDES = [
-  { src: "/video/hero-bergamo.mp4", poster: "/video/hero-bergamo-poster.jpg", cap: "hero.cap.bg" },
-  { src: "/video/hero-milano.mp4", poster: "/video/hero-milano-poster.jpg", cap: "hero.cap.mi" },
+  { src: `${BASE}video/hero-bergamo.mp4`, poster: `${BASE}video/hero-bergamo-poster.jpg`, cap: "hero.cap.bg" },
+  { src: `${BASE}video/hero-milano.mp4`, poster: `${BASE}video/hero-milano-poster.jpg`, cap: "hero.cap.mi" },
 ] as const;
 
 export function Hero({ lang }: { lang: Lang }) {

@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [reactRouter()],
-  base: "/Daria.t.tour/",
+  base: process.env.BASE_PATH ?? "/",
   resolve: {
     tsconfigPaths: true,
   },

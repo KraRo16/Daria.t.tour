@@ -1,7 +1,7 @@
 import type { Config } from "@react-router/dev/config";
 
 export default {
-  basename: "/Daria.t.tour/",
+  basename: process.env.BASE_PATH ?? "/",
   ssr: false,
   prerender: ["/it", "/en", "/uk"],
 } satisfies Config;
