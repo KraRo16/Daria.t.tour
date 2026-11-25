@@ -1,6 +1,7 @@
 import type { Config } from "@react-router/dev/config";
 
 export default {
-  ssr: false, // нет серверного рендера на лету
-  prerender: ["/it", "/en", "/uk"], // эти страницы станут готовым HTML при сборке
+  basename: "/Daria.t.tour",
+  ssr: false,
+  prerender: ["/it", "/en", "/uk"],
 } satisfies Config;
