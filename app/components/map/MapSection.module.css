@@ -56,18 +56,41 @@
     list-style: none;
     padding: 0;
     margin: 14px 0 0;
+    max-height: 280px;
+    overflow-y: auto;
 }
 
 .list li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     padding: 10px 0;
     border-bottom: 1px solid var(--line);
     font-size: 15px;
 }
 
-.list li span:last-child {
+.list small {
+    display: block;
     color: var(--mut);
+    font-size: 13px;
+}
+
+.more {
+    flex-shrink: 0;
+    padding: 6px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 99px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+}
+
+.more:hover,
+.more:focus-visible {
+    background: var(--ink);
+    color: var(--bg);
 }
 
 .dist {

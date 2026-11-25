@@ -6,15 +6,14 @@ import s from "./LombardyMap.module.css";
 interface Props {
   lang: Lang;
   active: City | null;
-  onHover: (city: City) => void;
-  onSelect: (city: City) => void;
+  onSelect: (city: City) => void; // наведение, фокус, клик и Enter: город показывается в панели
 }
 
-export function LombardyMap({ lang, active, onHover, onSelect }: Props) {
+export function LombardyMap({ lang, active, onSelect }: Props) {
   const t = getT(lang);
 
   const bind = (c: City) => ({
-    onMouseEnter: () => onHover(c),
+    onMouseEnter: () => onSelect(c),
     onClick: () => onSelect(c),
   });
 
@@ -32,7 +31,7 @@ export function LombardyMap({ lang, active, onHover, onSelect }: Props) {
           tabIndex={0}
           role="button"
           aria-label={t(`city.${c}` as const)}
-          onFocus={() => onHover(c)}
+          onFocus={() => onSelect(c)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();

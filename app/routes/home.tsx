@@ -6,7 +6,6 @@ import { Hero } from "~/components/hero/Hero";
 import { About } from "~/components/sections/About";
 import { Principles } from "~/components/sections/Principles";
 import { MapSection } from "~/components/map/MapSection";
-import { ToursSection } from "~/components/tours/ToursSection";
 import { How } from "~/components/sections/How";
 import { Reviews } from "~/components/sections/Reviews";
 import { Faq } from "~/components/sections/Faq";
@@ -32,7 +31,6 @@ export default function Home() {
         <About lang={lang} />
         <Principles lang={lang} />
         <MapSection lang={lang} />
-        <ToursSection lang={lang} />
         <How lang={lang} />
         <Reviews lang={lang} />
         <Faq lang={lang} />

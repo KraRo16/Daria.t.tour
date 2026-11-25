@@ -39,7 +39,7 @@ export function About({ lang }: { lang: Lang }) {
         </h2>
         <p className={s.text}>{t("about.p1")}</p>
         <p className={s.text}>{t("about.p2")}</p>
-        <a className="btn" href="#tour">
+        <a className="btn" href="#mappa">
           {t("about.cta")}
         </a>
 

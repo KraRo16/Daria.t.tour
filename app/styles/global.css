@@ -88,11 +88,6 @@ button {
     transform: translateY(40px);
 }
 
-.flash {
-    box-shadow: 0 0 0 12px var(--bg2);
-    background: var(--bg2);
-    border-radius: 24px;
-}
 
 body:has(dialog[open]) {
     overflow: hidden;

@@ -16,10 +16,7 @@ export function Nav({ lang }: { lang: Lang }) {
           <a href="#chi">{t("nav.about")}</a>
         </li>
         <li>
-          <a href="#mappa">{t("nav.map")}</a>
-        </li>
-        <li>
-          <a href="#tour">{t("nav.tours")}</a>
+          <a href="#mappa">{t("nav.tours")}</a>
         </li>
         <li>
           <a href="#contatti">{t("nav.contact")}</a>
