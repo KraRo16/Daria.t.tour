@@ -18,6 +18,7 @@
     stroke-width: 1.4;
 }
 
+
 .lines {
     fill: none;
     stroke: var(--line);
