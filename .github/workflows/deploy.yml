@@ -37,11 +37,17 @@ jobs:
         run: npm ci
 
       - name: Build React project
-        env:
-          DEBUG: "*"
         run: |
           set -o pipefail
           npm run build 2>&1 | tee build.log
+
+      - name: Inspect generated files
+        if: always()
+        run: |
+          echo "BUILD FILES:"
+          find build -maxdepth 3 -type f | sort || true
+          echo "BUILD LOG:"
+          cat build.log || true
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
