@@ -19,7 +19,6 @@ export function Principles({ lang }: { lang: Lang }) {
       <div ref={grid.ref} className={`${s.grid} reveal ${grid.hidden ? "reveal-hide" : ""}`}>
         {ITEMS.map((n) => (
           <div key={n} className={s.card}>
-            <b>0{n}</b>
             <h3>{t(`look.${n}t` as const)}</h3>
             <p>{t(`look.${n}d` as const)}</p>
           </div>

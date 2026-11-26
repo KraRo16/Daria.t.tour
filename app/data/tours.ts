@@ -1,4 +1,10 @@
 import type { Lang } from "~/i18n/ui";
+import cittaAlta from "~/assets/tours/citta-alta.jpg";
+import accademiaCarrara from "~/assets/tours/accademia-carrara.jpg";
+import gamec from "~/assets/tours/gamec.jpg";
+import centroStorico from "~/assets/tours/centro-storico.jpg";
+import pinacotecaBrera from "~/assets/tours/pinacoteca-di-brera.jpg";
+import palazzoCitterio from "~/assets/tours/palazzo-citterio.jpg";
 
 export type City = "bergamo" | "milano";
 export const cities: City[] = ["bergamo", "milano"];
@@ -12,7 +18,9 @@ export interface Tour {
   durationH: number;
   priceFrom: number; // ЗАГЛУШКА, заменить реальными ценами
   maxGroup: number; // ЗАГЛУШКА
-  gradient: string; // пока градиент, позже фото
+  gradient: string; // фон на время загрузки фото
+  image: string;
+  imagePosition: string; // какая часть кадра остаётся видимой при обрезке (object-position)
   subtitle: L10n;
   description: L10n;
   stops: string[];
@@ -28,6 +36,8 @@ export const tours: Tour[] = [
     priceFrom: 150,
     maxGroup: 25,
     gradient: "linear-gradient(160deg,#ffd27a,#e58a2e 55%,#7a3b22)",
+    image: cittaAlta,
+    imagePosition: "52% 50%",
     subtitle: {
       it: "Centro storico di Bergamo",
       en: "Bergamo’s old town",
@@ -54,6 +64,8 @@ export const tours: Tour[] = [
     priceFrom: 100,
     maxGroup: 8,
     gradient: "linear-gradient(160deg,#f2a65a,#b5532f 55%,#4a2418)",
+    image: accademiaCarrara,
+    imagePosition: "50% 25%",
     subtitle: {
       it: "Museo d’arte XV–XIX sec.",
       en: "Art museum, 15th–19th c.",
@@ -75,6 +87,8 @@ export const tours: Tour[] = [
     priceFrom: 100,
     maxGroup: 8,
     gradient: "linear-gradient(160deg,#ffe066,#f08a1c 50%,#b83a2a)",
+    image: gamec,
+    imagePosition: "50% 50%",
     subtitle: {
       it: "Galleria d’Arte Moderna e Contemporanea",
       en: "Modern and Contemporary Art Gallery",
@@ -96,6 +110,8 @@ export const tours: Tour[] = [
     priceFrom: 120,
     maxGroup: 8,
     gradient: "linear-gradient(160deg,#ffe9a8,#e9b44c 55%,#7b5a2a)",
+    image: centroStorico,
+    imagePosition: "50% 40%",
     subtitle: {
       it: "Palazzo Sforzesco · Duomo",
       en: "Sforza Castle · Duomo",
@@ -117,6 +133,8 @@ export const tours: Tour[] = [
     priceFrom: 110,
     maxGroup: 8,
     gradient: "linear-gradient(160deg,#f7c873,#c56a3a 55%,#4d2a1c)",
+    image: pinacotecaBrera,
+    imagePosition: "50% 40%",
     subtitle: {
       it: "Museo d’arte XII–XIX sec.",
       en: "Art museum, 12th–19th c.",
@@ -138,6 +156,8 @@ export const tours: Tour[] = [
     priceFrom: 100,
     maxGroup: 8,
     gradient: "linear-gradient(160deg,#ffd45c,#ee8f1e 45%,#8a3b4a)",
+    image: palazzoCitterio,
+    imagePosition: "50% 35%",
     subtitle: {
       it: "Museo d’arte del XX sec.",
       en: "20th-century art museum",

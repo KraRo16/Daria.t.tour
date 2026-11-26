@@ -45,10 +45,13 @@
 .panel h3 {
     font-size: 36px;
     margin-bottom: 6px;
+    /* color: var(--ac2); */
+    /* color: var(--mut); */
 }
 
 .panel p {
-    color: var(--mut);
+    /* color: var(--mut); */
+    color: var(--ac2);
     font-size: 15px;
 }
 
@@ -74,6 +77,18 @@
     display: block;
     color: var(--mut);
     font-size: 13px;
+}
+
+.thumb {
+    width: 56px;
+    height: 56px;
+    flex: none;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.list li>div {
+    flex: 1;
 }
 
 .more {

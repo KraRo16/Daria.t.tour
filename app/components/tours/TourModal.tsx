@@ -32,7 +32,9 @@ export function TourModal({ tour, lang, onClose }: Props) {
     >
       {tour && (
         <>
-          <div className={s.visual} style={{ background: tour.gradient }} />
+          <div className={s.visual} style={{ background: tour.gradient }}>
+            <img src={tour.image} alt={tour.name} style={{ objectPosition: tour.imagePosition }} />
+          </div>
           <div className={s.body}>
             <button type="button" className={s.close} onClick={onClose} aria-label={t("tour.close")}>
               ×

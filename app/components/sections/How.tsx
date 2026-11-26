@@ -18,7 +18,7 @@ export function How({ lang }: { lang: Lang }) {
       <div ref={grid.ref} className={`${s.grid} reveal ${grid.hidden ? "reveal-hide" : ""}`}>
         {STEPS.map((n) => (
           <div key={n} className={s.card}>
-            <b>0{n}</b>
+            <b>{n}</b>
             <h3>{t(`how.${n}t` as const)}</h3>
             <p>{t(`how.${n}d` as const)}</p>
           </div>

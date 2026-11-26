@@ -33,6 +33,15 @@ export function MapSection({ lang }: { lang: Lang }) {
                 <ul className={s.list}>
                   {toursByCity(shown).map((tour) => (
                     <li key={tour.id}>
+                      <img
+                        className={s.thumb}
+                        src={tour.image}
+                        alt=""
+                        width={56}
+                        height={56}
+                        loading="lazy"
+                        style={{ objectPosition: tour.imagePosition }}
+                      />
                       <div>
                         <span>{tour.name}</span>
                         <small>{tour.subtitle[lang]}</small>
