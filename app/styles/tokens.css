@@ -8,6 +8,8 @@
     --ac2: #d97706;
     --br: #5a3a14;
     --line: rgba(43, 33, 24, 0.15);
+    --soft: var(--bg2);
+    --soft-line: transparent;
     --map-land: var(--card);
     --map-neighbor: var(--bg2);
     --map-mini: var(--bg2);
@@ -29,5 +31,7 @@
         --map-neighbor: #352a1c;
         --map-mini: #4a3a26;
         --map-stroke: #d9b36a;
+        --soft: #43341f;
+        --soft-line: rgba(255, 243, 214, 0.2);
     }
 }

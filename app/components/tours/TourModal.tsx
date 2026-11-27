@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { CONTACT, LANGUAGES_OFFERED } from "~/data/site";
-import { hoursLabel, type Tour } from "~/data/tours";
+import { durationLabel, moneyPerPerson, priceLabel, stopLabel, type Tour } from "~/data/tours";
 import { getT, type Lang } from "~/i18n/ui";
 import s from "./TourModal.module.css";
 
@@ -45,27 +45,50 @@ export function TourModal({ tour, lang, onClose }: Props) {
 
             <div className={s.stopsLabel}>{t("tour.stops")}</div>
             <div className={s.chips}>
-              {tour.stops.map((stop) => (
-                <span key={stop}>{stop}</span>
-              ))}
+              {tour.stops.map((stop) => {
+                const label = stopLabel(stop, lang);
+                return <span key={label}>{label}</span>;
+              })}
             </div>
 
             <dl className={s.facts}>
               <dt>{t("tour.duration")}</dt>
-              <dd>{hoursLabel(tour.durationH, lang)}</dd>
+              <dd>
+                {durationLabel(tour.duration, lang)}
+                {tour.duration.note && ` (${tour.duration.note[lang]})`}
+              </dd>
               <dt>{t("tour.meet")}</dt>
               <dd>{tour.meetingPoint}</dd>
               <dt>{t("tour.langs")}</dt>
               <dd>{LANGUAGES_OFFERED}</dd>
-              <dt>{t("tour.group")}</dt>
-              <dd>
-                {t("tour.upto")} {tour.maxGroup} {t("tour.people")}
-              </dd>
+              {tour.maxGroup && (
+                <>
+                  <dt>{t("tour.group")}</dt>
+                  <dd>
+                    {t("tour.upto")} {tour.maxGroup} {t("tour.people")}
+                  </dd>
+                </>
+              )}
               <dt>{t("tour.price")}</dt>
-              <dd>
-                {t("tour.from")} €{tour.priceFrom}
-              </dd>
+              <dd>{priceLabel(tour.price)}</dd>
             </dl>
+
+            <div className={s.extras}>
+              <div className={s.extrasTitle}>{t("tour.extrasTitle")}</div>
+              <ul>
+                {tour.extras.ticket && (
+                  <li>
+                    {t(`extra.${tour.extras.ticket}` as const)}: {t("extra.buyApart")}.
+                  </li>
+                )}
+                {tour.extras.audioguide !== undefined && (
+                  <li>
+                    {t("extra.audioguide")}: {moneyPerPerson(tour.extras.audioguide, lang)} {t("extra.perPerson")} (
+                    {t("extra.payOnSite")}).
+                  </li>
+                )}
+              </ul>
+            </div>
 
             <a className="btn" href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(tour.name)}`}>
               {t("tour.request")}

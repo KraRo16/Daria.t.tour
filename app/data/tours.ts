@@ -10,21 +10,23 @@ export type City = "bergamo" | "milano";
 export const cities: City[] = ["bergamo", "milano"];
 
 type L10n = Record<Lang, string>;
+type Stop = string | L10n; // имя собственное (не переводится) или переводимое название
 
 export interface Tour {
   id: string; // slug, потом пригодится для страницы тура
   city: City;
   name: string; // имя собственное, не переводится
-  durationH: number;
-  priceFrom: number; // ЗАГЛУШКА, заменить реальными ценами
-  maxGroup: number; // ЗАГЛУШКА
+  duration: { min: number; max?: number; note?: L10n }; // часы
+  price: { min: number; max?: number }; // евро
+  maxGroup?: number; // не указан → строка скрывается в модалке
   gradient: string; // фон на время загрузки фото
   image: string;
   imagePosition: string; // какая часть кадра остаётся видимой при обрезке (object-position)
   subtitle: L10n;
   description: L10n;
-  stops: string[];
+  stops: Stop[];
   meetingPoint: string;
+  extras: { ticket?: "museum" | "museumChurches" | "duomo"; audioguide?: number }; // audioguide: € с человека
 }
 
 export const tours: Tour[] = [
@@ -32,9 +34,16 @@ export const tours: Tour[] = [
     id: "citta-alta",
     city: "bergamo",
     name: "Città Alta",
-    durationH: 2,
-    priceFrom: 150,
-    maxGroup: 25,
+    duration: {
+      min: 1.5,
+      max: 2,
+      note: {
+        it: "con la Basilica Santa Maria Maggiore",
+        en: "including the Basilica of Santa Maria Maggiore",
+        uk: "з базилікою Санта-Марія-Маджоре",
+      },
+    },
+    price: { min: 150, max: 180 },
     gradient: "linear-gradient(160deg,#ffd27a,#e58a2e 55%,#7a3b22)",
     image: cittaAlta,
     imagePosition: "52% 50%",
@@ -54,15 +63,16 @@ export const tours: Tour[] = [
       "l'antico lavatoio",
       "Piazza Vecchia con la Cappella Colleoni e la Basilica di Santa Maria Maggiore",
     ],
-    meetingPoint: "Funicolare, Città Alta",
+    meetingPoint: "Piazza Mercato delle Scarpe",
+    extras: { ticket: "museumChurches", audioguide: 2.5 },
   },
   {
     id: "accademia-carrara",
     city: "bergamo",
     name: "Accademia Carrara",
-    durationH: 2,
-    priceFrom: 100,
-    maxGroup: 8,
+    duration: { min: 1.5 },
+    price: { min: 150 },
+    maxGroup: 25,
     gradient: "linear-gradient(160deg,#f2a65a,#b5532f 55%,#4a2418)",
     image: accademiaCarrara,
     imagePosition: "50% 25%",
@@ -72,20 +82,21 @@ export const tours: Tour[] = [
       uk: "Музей мистецтва XV–XIX ст.",
     },
     description: {
-      it: "Dal Rinascimento all’Ottocento, imparando a guardare pennellata e composizione.",
-      en: "From the Renaissance to the 1800s, learning to look at brushwork and composition.",
-      uk: "Від Ренесансу до XIX ст.: вчимося бачити мазок і композицію.",
+      it: "Dipinti preziosi dal Gotico all’Ottocento, un’immersione totale nella storia dell’arte.",
+      en: "Precious paintings from the Gothic to the 19th century: a total immersion in the history of art.",
+      uk: "Коштовні полотна від готики до XIX століття: повне занурення в історію мистецтва.",
     },
-    stops: ["Raffaello", "Botticelli", "Lorenzo Lotto"],
+    stops: ["Mantegna", "Bellini", "Raffaello", "Botticelli", "Lotto"],
     meetingPoint: "Ingresso Accademia Carrara",
+    extras: { ticket: "museum", audioguide: 1 },
   },
   {
     id: "gamec",
     city: "bergamo",
     name: "GAMeC",
-    durationH: 2,
-    priceFrom: 100,
-    maxGroup: 8,
+    duration: { min: 1 },
+    price: { min: 150 },
+    maxGroup: 20,
     gradient: "linear-gradient(160deg,#ffe066,#f08a1c 50%,#b83a2a)",
     image: gamec,
     imagePosition: "50% 50%",
@@ -95,43 +106,65 @@ export const tours: Tour[] = [
       uk: "Галерея сучасного мистецтва",
     },
     description: {
-      it: "L’arte del Novecento e di oggi: colore, gesto e idee spiegati senza paura.",
-      en: "20th-century and current art: colour, gesture and ideas, no intimidation.",
-      uk: "Мистецтво XX століття й сьогодення: колір, жест, ідеї без складнощів.",
+      it: "Le avanguardie del Novecento e Arte Contemporanea: capirle senza fatica!",
+      en: "The 20th-century avant-gardes and contemporary art: understanding them without effort!",
+      uk: "Авангарди XX століття та сучасне мистецтво: зрозуміти їх без зусиль!",
     },
-    stops: ["Collezione permanente", "Mostre temporanee", "Arte del Novecento"],
+    stops: [
+      "Balla",
+      "Manzù",
+      "Kandinsky",
+      "De Chirico",
+      "Morandi",
+      "Mastrovito",
+      "De Bruyckere",
+      { it: "Mostre temporanee", en: "Temporary exhibitions", uk: "Тимчасові виставки" },
+    ],
     meetingPoint: "Ingresso GAMeC",
+    extras: { ticket: "museum" },
   },
   {
     id: "centro-storico",
     city: "milano",
     name: "Centro storico",
-    durationH: 3,
-    priceFrom: 120,
-    maxGroup: 8,
+    duration: {
+      min: 2,
+      max: 3,
+      note: { it: "con Duomo", en: "including the Duomo", uk: "з Дуомо" },
+    },
+    price: { min: 180, max: 240 },
+    maxGroup: 25,
     gradient: "linear-gradient(160deg,#ffe9a8,#e9b44c 55%,#7b5a2a)",
     image: centroStorico,
     imagePosition: "50% 40%",
     subtitle: {
-      it: "Palazzo Sforzesco · Duomo",
+      it: "Castello Sforzesco · Duomo",
       en: "Sforza Castle · Duomo",
       uk: "Замок Сфорца · Дуомо",
     },
     description: {
-      it: "Dal Castello al Duomo: volumi, luce e dettagli di una città che si scopre camminando.",
-      en: "From the Castle to the Duomo: volumes, light and details of a city best met on foot.",
-      uk: "Від замку до Дуомо: об’єми, світло й деталі міста, яке відкривають пішки.",
+      it: "Dal Castello Sforzesco al Duomo, una passeggiata alla scoperta di Milano!",
+      en: "From Sforza Castle to the Duomo, a walk to discover Milan!",
+      uk: "Від замку Сфорцеско до Дуомо: прогулянка, щоб відкрити Мілан!",
     },
-    stops: ["Piazza del Duomo", "Galleria Vittorio Emanuele II", "Castello Sforzesco"],
-    meetingPoint: "Piazza del Duomo",
+    stops: [
+      "Castello Sforzesco",
+      "Via Dante",
+      "Piazza Mercanti",
+      "Piazza Duomo",
+      "Galleria Vittorio Emanuele II",
+      "Piazza della Scala",
+    ],
+    meetingPoint: "Castello Sforzesco",
+    extras: { ticket: "duomo", audioguide: 2.5 },
   },
   {
     id: "pinacoteca-di-brera",
     city: "milano",
     name: "Pinacoteca di Brera",
-    durationH: 2.5,
-    priceFrom: 110,
-    maxGroup: 8,
+    duration: { min: 2 },
+    price: { min: 180 },
+    maxGroup: 25,
     gradient: "linear-gradient(160deg,#f7c873,#c56a3a 55%,#4d2a1c)",
     image: pinacotecaBrera,
     imagePosition: "50% 40%",
@@ -141,20 +174,32 @@ export const tours: Tour[] = [
       uk: "Музей мистецтва XII–XIX ст.",
     },
     description: {
-      it: "I capolavori di Brera raccontati attraverso luce, colore e costruzione dell’immagine.",
-      en: "Brera’s masterpieces told through light, colour and how an image is built.",
-      uk: "Шедеври Брери крізь світло, колір і побудову зображення.",
+      it: "Un viaggio attraverso i capolavori di Brera per scoprire il legame tra i grandi artisti del passato!",
+      en: "A journey through Brera’s masterpieces to discover the link between the great artists of the past!",
+      uk: "Подорож шедеврами Брери, щоб відкрити зв’язок між великими митцями минулого!",
     },
-    stops: ["Il Bacio · Hayez", "Mantegna · Cristo morto", "Raffaello · Sposalizio"],
+    stops: [
+      "Bellini",
+      "Mantegna",
+      "Tintoretto",
+      "Veronese",
+      "Bramante",
+      "Raffaello",
+      "Piero della Francesca",
+      "Caravaggio",
+      "Canaletto",
+      "Hayez",
+    ],
     meetingPoint: "Ingresso Pinacoteca di Brera",
+    extras: { ticket: "museum", audioguide: 2 },
   },
   {
     id: "palazzo-citterio",
     city: "milano",
     name: "Palazzo Citterio",
-    durationH: 2,
-    priceFrom: 100,
-    maxGroup: 8,
+    duration: { min: 1 },
+    price: { min: 150 },
+    maxGroup: 20,
     gradient: "linear-gradient(160deg,#ffd45c,#ee8f1e 45%,#8a3b4a)",
     image: palazzoCitterio,
     imagePosition: "50% 35%",
@@ -164,18 +209,30 @@ export const tours: Tour[] = [
       uk: "Музей мистецтва XX ст.",
     },
     description: {
-      it: "Il Novecento a Milano: un percorso dentro il palazzo e le sue collezioni.",
-      en: "The 20th century in Milan: a path through the palace and its collections.",
-      uk: "XX століття в Мілані: маршрут палацом і його колекціями.",
+      it: "Le avanguardie del Novecento da assaporare in tutta tranquillità!",
+      en: "The 20th-century avant-gardes, to be savoured in complete calm!",
+      uk: "Авангарди XX століття, якими можна насолоджуватися без поспіху!",
     },
-    stops: ["Collezione Jucker", "Collezione Vitali", "Architettura del palazzo"],
+    stops: ["Boccioni", "Morandi", "Modigliani", "Picasso", "Carrà", "Sironi", "De Chirico"],
     meetingPoint: "Ingresso Palazzo Citterio",
+    extras: { ticket: "museum", audioguide: 2 },
   },
 ];
 
 export const toursByCity = (city: City) => tours.filter((t) => t.city === city);
 
-export function hoursLabel(h: number, lang: Lang) {
-  const n = String(h).replace(".", lang === "en" ? "." : ",");
-  return `${n} ${lang === "uk" ? "год" : "h"}`;
+const num = (n: number, lang: Lang) => String(n).replace(".", lang === "en" ? "." : ",");
+
+export function durationLabel(d: Tour["duration"], lang: Lang) {
+  const range = d.max ? `${num(d.min, lang)} – ${num(d.max, lang)}` : num(d.min, lang);
+  return `${range} ${lang === "uk" ? "год" : "h"}`;
+}
+
+export const priceLabel = (p: Tour["price"]) => (p.max ? `€${p.min} – €${p.max}` : `€${p.min}`);
+
+export const stopLabel = (s: Stop, lang: Lang) => (typeof s === "string" ? s : s[lang]);
+
+export function moneyPerPerson(n: number, lang: Lang) {
+  const v = n.toFixed(2);
+  return lang === "en" ? `€${v}` : `${v.replace(".", ",")} €`;
 }
