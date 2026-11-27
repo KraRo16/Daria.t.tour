@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LombardyMap } from "./LombardyMap";
 import { TourModal } from "~/components/tours/TourModal";
+import { ItalyLocator } from "./ItalyLocator";
 import { toursByCity, type City, type Tour } from "~/data/tours";
 import { getT, type Lang } from "~/i18n/ui";
 import { useReveal } from "~/hooks/useReveal";
@@ -18,6 +19,7 @@ export function MapSection({ lang }: { lang: Lang }) {
       <div className={s.wrap}>
         <div ref={map.ref} className={`${s.map} reveal ${map.hidden ? "reveal-hide" : ""}`}>
           <LombardyMap lang={lang} active={shown} onSelect={setShown} />
+          <ItalyLocator lang={lang} />
         </div>
 
         <div ref={info.ref} className={`reveal ${info.hidden ? "reveal-hide" : ""}`}>

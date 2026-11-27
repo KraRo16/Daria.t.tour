@@ -18,6 +18,7 @@
 }
 
 .map {
+    position: relative;
     background: var(--bg2);
     border-radius: 28px;
     padding: 10px;

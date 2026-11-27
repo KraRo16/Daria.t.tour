@@ -1,0 +1,34 @@
+.locator {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: clamp(80px, 20%, 136px);
+    height: auto;
+    padding: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(90, 58, 20, 0.15);
+    pointer-events: none;
+}
+
+.regions {
+    fill: var(--map-mini);
+    stroke: var(--map-stroke);
+    stroke-opacity: 0.5;
+    stroke-width: 0.5;
+    stroke-linejoin: round;
+}
+
+.lombardia {
+    fill: var(--ac);
+    stroke: var(--ac2);
+    stroke-width: 0.8;
+}
+
+.frame {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1;
+    stroke-dasharray: 3 2;
+}

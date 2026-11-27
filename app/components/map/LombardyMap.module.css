@@ -6,22 +6,22 @@
 }
 
 .nb {
-    fill: var(--bg2);
-    stroke: var(--line);
+    fill: var(--map-neighbor);
+    stroke: var(--map-stroke);
+    stroke-opacity: 0.25;
     stroke-width: 0.8;
-    opacity: 0.8;
 }
 
 .region {
-    fill: var(--card);
-    stroke: var(--br);
+    fill: var(--map-land);
+    stroke: var(--map-stroke);
     stroke-width: 1.4;
 }
 
-
 .lines {
     fill: none;
-    stroke: var(--line);
+    stroke: var(--map-stroke);
+    stroke-opacity: 0.25;
     stroke-width: 0.7;
 }
 

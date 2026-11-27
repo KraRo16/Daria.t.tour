@@ -8,6 +8,10 @@
     --ac2: #d97706;
     --br: #5a3a14;
     --line: rgba(43, 33, 24, 0.15);
+    --map-land: var(--card);
+    --map-neighbor: var(--bg2);
+    --map-mini: var(--bg2);
+    --map-stroke: var(--br);
     --font-serif: "Cormorant Garamond", Georgia, serif;
     --font-sans: "Inter Variable", system-ui, sans-serif;
     color-scheme: light dark;
@@ -21,5 +25,9 @@
         --ink: #fff3d6;
         --mut: #c2b192;
         --line: rgba(255, 243, 214, 0.15);
+        --map-land: #4a3a26;
+        --map-neighbor: #352a1c;
+        --map-mini: #4a3a26;
+        --map-stroke: #d9b36a;
     }
 }
